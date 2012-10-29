@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/main_bg"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+    <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1" >
+
+        
+        
+        <LinearLayout
+            android:id="@+id/fakeBUtton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/main_button"
+            android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textGrad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="90dp"
+            android:text="Traženje..."
+            android:textSize="26dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Izaberi grad"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+        
+    </LinearLayout>
+
+    
+
+    
+    
+    <Button
+        android:id="@+id/buttonNadji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bottom_button"
+        android:textColor="@android:color/white"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:text="@string/izracunaj" />
+
+</LinearLayout>

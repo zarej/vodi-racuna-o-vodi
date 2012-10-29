@@ -1,0 +1,21 @@
+<resources>
+
+    <string name="app_name">StediVodu</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Vodi računa o vodi</string>
+    <string name="server">http://192.168.10.92/phpapi/</string>
+    <string name="username">zarko</string>
+    <string name="password">zarko</string>
+    <string name="nasli_smo_te">Trenutna lokacija: </string>
+    <string name="promeni">Promeni</string>
+    <string name="gdesi">Nađi sebe?</string>
+    <string name="zivis">Gde živiš?</string>
+    <string name="radio_voda">Voda</string>
+    <string name="radio_vodaikom">Voda i kanalizacija</string>
+    <string name="unesi_racun">Unesi iznos mesečnog računa:</string>
+    <string name="posalji">Pošalji</string>
+    <string name="kuca">Kuća</string>
+    <string name="stan">Stan</string>
+    <string name="izracunaj">Izračunaj\nmoju potrošnju</string>
+	<string name="ispodproseka">Ispod\nProseka</string>
+</resources>
