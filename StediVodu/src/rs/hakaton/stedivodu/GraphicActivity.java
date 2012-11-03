@@ -30,6 +30,8 @@ public class GraphicActivity extends Activity {
 	private TweenManager tweenManager;
 	private boolean isAnimationRunning = true;
 	TextView scoreTextView;
+	
+	//Test github
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
