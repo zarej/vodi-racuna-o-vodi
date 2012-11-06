@@ -3,6 +3,7 @@ package rs.hakaton.stedivodu;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,6 +13,7 @@ import rs.hakaton.stedivodu.MyLocation.LocationResult;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -41,14 +43,13 @@ public class MainActivity extends Activity {
 	Button nadjiButton;
 	LinearLayout fakeButton;
 	TextView textGrad;
+	ProgressDialog progressDialog;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
-		
-		
 		
 		items_lat.add("Nepoznata");
 		items_cir.add("Nepoznata");
@@ -57,13 +58,14 @@ public class MainActivity extends Activity {
 		fakeButton = (LinearLayout) findViewById(R.id.fakeBUtton);
 		textGrad = (TextView) findViewById(R.id.textGrad);
 		
-	
+		setUserId();
 		new SendPostReqAsyncTask().execute("voda", "getcities");
 
 		locationResult = new LocationResult() {
 
 			@Override
 			public void gotLocation(Location location) {
+				progressDialog.dismiss();
 				// TODO Auto-generated method stub
 				Log.d(TAG, "Location received Lat=" + location.getLatitude());
 				Log.d(TAG, "Location received Lon=" + location.getLongitude());
@@ -131,12 +133,12 @@ public class MainActivity extends Activity {
 
 	class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
 
-		ProgressDialog dialog;
+		
 
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
-			dialog = ProgressDialog.show(MainActivity.this, "",
+			progressDialog = ProgressDialog.show(MainActivity.this, "",
 					"Učitavanje...", true);
 
 		}
@@ -148,16 +150,18 @@ public class MainActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
-			dialog.dismiss();
-
+			
 			JSONArray citiesLatJsonArray = null;
 			JSONArray citiesCirJsonArray = null;
 			
 			if (result == null) {
 				Toast.makeText(MainActivity.this, "Verovatno te zeza net", Toast.LENGTH_SHORT).show();
 				textGrad.setText("Nepoznat");
+				progressDialog.dismiss();
 				return;
 			}
+			
+			Log.d("result", "Result posta: " + result );
 			
 			try {
 				JSONObject json = new JSONObject(result);
@@ -203,9 +207,26 @@ public class MainActivity extends Activity {
 			});
 			
 			MyLocation myLocation = new MyLocation();
-			myLocation.getLocation(MainActivity.this, locationResult);
-
+			boolean locationListenerCalled = myLocation.getLocation(MainActivity.this, locationResult);
+			
+			if (!locationListenerCalled) {
+				progressDialog.dismiss();
+			}
 		}
+	}
+	
+	private void setUserId() {
+		SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);    
+	    
+	    User.userId = sharedPreferences.getString("userId", "none");
+	    
+	    if (User.userId.equals("none")) {
+	    	//user id is not set
+	    	User.userId = UUID.randomUUID().toString();
+	    	SharedPreferences.Editor editor = sharedPreferences.edit();
+	    	editor.putString("userId", User.userId);
+	    	editor.commit();
+	    }
 	}
 	
 

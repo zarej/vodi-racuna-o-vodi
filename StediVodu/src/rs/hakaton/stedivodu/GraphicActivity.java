@@ -51,7 +51,7 @@ public class GraphicActivity extends Activity {
 		Log.d(TAG, "jeKuca=" + User.jeKuca);
 		Log.d(TAG, "Grad=" + User.grad);
 
-//		populateDatabase();
+		populateDatabase();
 		
 		setContentView(R.layout.activity_graphic);
 		llMarker = (LinearLayout) findViewById(R.id.linearLayoutМаркеr);
@@ -72,7 +72,6 @@ public class GraphicActivity extends Activity {
 	}
 
 	private void populateDatabase() {
-
 		
 		new SendPostReqAsyncTask().execute("voda", "setuserdata");
 		

@@ -77,20 +77,23 @@ public class PostHelper {
 //                        tip_racuna = $params[2],
 //                        kucastan = $params[3]
 			
-			BasicNameValuePair gradBasicNameValuePAir = new BasicNameValuePair(
-					"grad", User.grad == null? "Nepoznani grad" : User.grad);
+			BasicNameValuePair gradBasicNameValuePAir = null;
+			gradBasicNameValuePAir = new BasicNameValuePair(
+					"grad", User.grad == null? "Nepoznani grad" : User.grad );			
 			BasicNameValuePair racunBasicNameValuePAir = new BasicNameValuePair(
 					"racun", String.valueOf(User.racun) );
 			BasicNameValuePair tipRacunadBasicNameValuePAir = new BasicNameValuePair(
 					"tip_racuna", User.tipRacuna);
 			BasicNameValuePair kucaStanBasicNameValuePAir = new BasicNameValuePair(
 					"kucastan", User.jeKuca ? "kuca" : "stan");
+			BasicNameValuePair userIdBasicNameValuePAir = new BasicNameValuePair(
+					"id_korisnik", User.userId);
 			
 			nameValuePairList.add(gradBasicNameValuePAir);
 			nameValuePairList.add(racunBasicNameValuePAir);
 			nameValuePairList.add(tipRacunadBasicNameValuePAir);
 			nameValuePairList.add(kucaStanBasicNameValuePAir);			
-			
+			nameValuePairList.add(userIdBasicNameValuePAir);
 		}
 
 		try {

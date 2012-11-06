@@ -5,4 +5,5 @@ public class User {
 	public static float racun;
 	public static boolean jeKuca;
 	public static String tipRacuna;
+	public static String userId;
 }
