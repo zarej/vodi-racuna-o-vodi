@@ -3,7 +3,7 @@
     <string name="app_name">StediVodu</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Vodi računa o vodi</string>
-    <string name="server">http://192.168.254.1/phpapi/</string>
+    <string name="server">http://minimaldevelop.com/phpapi/</string>
     <string name="username">zarko</string>
     <string name="password">zarko</string>
     <string name="nasli_smo_te">Trenutna lokacija: </string>

@@ -67,6 +67,12 @@ public class MainActivity extends Activity {
 			public void gotLocation(Location location) {
 				progressDialog.dismiss();
 				// TODO Auto-generated method stub
+				
+				if (location == null) {
+					User.grad = items_lat.get(0);
+					return;
+				}
+				
 				Log.d(TAG, "Location received Lat=" + location.getLatitude());
 				Log.d(TAG, "Location received Lon=" + location.getLongitude());
 				
@@ -91,10 +97,16 @@ public class MainActivity extends Activity {
 							textGrad.setText(items_lat.get(i));
 							User.grad = items_lat.get(i);
 							Log.d(TAG, "Grad je na poziciji " + i);
+							spinnerView.setSelection(currentCityPos);
 						}
 					}
 					
-					spinnerView.setSelection(currentCityPos);
+					if (currentCityPos == 0 && !strlocation.equals("")) {
+						textGrad.setText(strlocation);
+						User.grad = strlocation;
+						items_lat.add(strlocation);
+						spinnerView.setSelection(items_lat.size()-1);
+					} 
 					
 				} catch (Exception e) {
 					e.printStackTrace();
