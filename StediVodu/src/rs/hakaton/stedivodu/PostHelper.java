@@ -102,7 +102,7 @@ public class PostHelper {
 			// This is typically useful while sending an HTTP POST
 			// request.
 			UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(
-					nameValuePairList);
+					nameValuePairList,"UTF-8");
 
 			// setEntity() hands the entity (here it is
 			// urlEncodedFormEntity) to the request.

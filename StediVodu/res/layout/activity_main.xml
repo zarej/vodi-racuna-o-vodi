@@ -23,8 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/main_button"
-            android:orientation="vertical" >
+            android:background="@drawable/mainimage"
+            android:orientation="vertical">
 
         <TextView
             android:id="@+id/textGrad"
@@ -34,7 +34,8 @@
             android:paddingTop="90dp"
             android:text="Traženje..."
             android:textSize="26dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@drawable/textselector" />
 
         <TextView
             android:paddingTop="10dp"
@@ -42,7 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Izaberi grad"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@drawable/textselector" />
 
     </LinearLayout>
         
