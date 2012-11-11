@@ -18,4 +18,8 @@
     <string name="stan">Stan</string>
     <string name="izracunaj">Izračunaj\nmoju potrošnju</string>
 	<string name="ispodproseka">Ispod\nProseka</string>
+	<string name="iznadproseka">Iznad\nProseka</string>
+	<string name="trosi">građana troši %1$s din</string>
+	<string name="prosek">Prosek %1$s din</string>
+	<string name="vasracun">Vaš račun od %1$s din je</string>
 </resources>

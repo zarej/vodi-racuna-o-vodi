@@ -145,8 +145,6 @@ public class MainActivity extends Activity {
 
 	class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
 
-		
-
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
@@ -224,6 +222,8 @@ public class MainActivity extends Activity {
 			if (!locationListenerCalled) {
 				progressDialog.dismiss();
 			}
+			//ovo obrisi kad otkomentarises ovo gore
+//			progressDialog.dismiss();
 		}
 	}
 	

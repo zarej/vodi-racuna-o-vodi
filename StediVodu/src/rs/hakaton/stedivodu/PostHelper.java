@@ -72,13 +72,7 @@ public class PostHelper {
 		
 		if (params[1].equals("setuserdata")) {
 			
-//			grad = $params[0], 
-//			racun = $params[1],
-//                        tip_racuna = $params[2],
-//                        kucastan = $params[3]
-			
-			BasicNameValuePair gradBasicNameValuePAir = null;
-			gradBasicNameValuePAir = new BasicNameValuePair(
+			BasicNameValuePair gradBasicNameValuePAir = new BasicNameValuePair(
 					"grad", User.grad == null? "Nepoznani grad" : User.grad );			
 			BasicNameValuePair racunBasicNameValuePAir = new BasicNameValuePair(
 					"racun", String.valueOf(User.racun) );
@@ -94,6 +88,10 @@ public class PostHelper {
 			nameValuePairList.add(tipRacunadBasicNameValuePAir);
 			nameValuePairList.add(kucaStanBasicNameValuePAir);			
 			nameValuePairList.add(userIdBasicNameValuePAir);
+		} else if (params[1].equals("getspending")) {
+			BasicNameValuePair gradBasicNameValuePAir = new BasicNameValuePair(
+					"grad", User.grad == null? "Nepoznani grad" : User.grad );	
+			nameValuePairList.add(gradBasicNameValuePAir);
 		}
 
 		try {

@@ -29,6 +29,9 @@
             android:name=".InputActivity" />
         <activity
             android:name=".GraphicActivity" />
+        <activity
+            android:name=".ShareActivity" />
+        
     </application>
 
 </manifest>

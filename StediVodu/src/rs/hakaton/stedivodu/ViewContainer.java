@@ -3,6 +3,7 @@ package rs.hakaton.stedivodu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class ViewContainer {
   private float x, y;
@@ -50,6 +51,22 @@ public class ViewContainer {
        * IF FOR android 3.0 and more 
        */
       //view.setX(x);
+      
+      //Povecavaj procente
+      if (GraphicActivity.needToIncresePercentage) {
+    	  TextView perc = (TextView) view.findViewById(R.id.textViewYourPercentage);
+    	  if (perc != null) { //null je kada se pomera marker, ovde treba da se pomera voda
+    		  float finalY = GraphicActivity.vodaContainerFinalPosY;
+              float finalValue = GraphicActivity.prosekProcenat;
+              
+              float currentPercOfY = y / finalY * 100;
+              float currentPercOfValue = finalValue * currentPercOfY / 100;
+              
+              
+              perc.setText(Math.round(currentPercOfValue) + "%");
+    	  }
+          
+      }
       
      
   }
