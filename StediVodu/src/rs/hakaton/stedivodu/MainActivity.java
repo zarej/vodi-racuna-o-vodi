@@ -1,5 +1,8 @@
 package rs.hakaton.stedivodu;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -59,7 +62,7 @@ public class MainActivity extends Activity {
 		textGrad = (TextView) findViewById(R.id.textGrad);
 		
 		setUserId();
-		new SendPostReqAsyncTask().execute("voda", "getcities");
+//		new SendPostReqAsyncTask().execute("voda", "getcities");
 
 		locationResult = new LocationResult() {
 
@@ -134,6 +137,7 @@ public class MainActivity extends Activity {
 				spinnerView.performClick();
 			}
 		});
+		
 		
 	}
 
