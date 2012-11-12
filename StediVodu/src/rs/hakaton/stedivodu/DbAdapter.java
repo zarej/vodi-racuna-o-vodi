@@ -2,6 +2,7 @@ package rs.hakaton.stedivodu;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -107,6 +108,32 @@ public class DbAdapter {
 	// return mCursor;
 	// }
 
+	
+	public void insertCities(ArrayList<String> cities) {
+		
+		for (String city : cities) {
+			ContentValues initialValues = new ContentValues();
+			initialValues.put(G_GRAD, city);
+			mDb.insert(DB_TABLE_GRAD, null, initialValues);
+		}
+		
+	}
+	
+	public ArrayList<String> getCities() {
+		
+		ArrayList<String> cities = new ArrayList<String>();
+		
+		Cursor c = mDb.query(DB_TABLE_GRAD, new String[]
+				 {ROWID, G_GRAD},
+				 null, null, null, null, null);
+				 
+		while (c.moveToNext()) {
+			cities.add(c.getString(c.getColumnIndex(G_GRAD)));
+		}
+		
+		return cities;
+	}
+	
 	private static void execBatchSqlFromAssets(String asset, Context c,
 			SQLiteDatabase db) {
 		InputStream input;

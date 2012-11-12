@@ -1,8 +1,5 @@
 package rs.hakaton.stedivodu;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -61,8 +58,7 @@ public class MainActivity extends Activity {
 		fakeButton = (LinearLayout) findViewById(R.id.fakeBUtton);
 		textGrad = (TextView) findViewById(R.id.textGrad);
 		
-		setUserId();
-//		new SendPostReqAsyncTask().execute("voda", "getcities");
+		setupUser();
 
 		locationResult = new LocationResult() {
 
@@ -124,6 +120,10 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE); 
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+		    	editor.putString("grad", User.grad);
+		    	editor.commit();
 				Intent i = new Intent(MainActivity.this, InputActivity.class);
 				startActivity(i);
 			}
@@ -137,7 +137,6 @@ public class MainActivity extends Activity {
 				spinnerView.performClick();
 			}
 		});
-		
 		
 	}
 
@@ -197,28 +196,13 @@ public class MainActivity extends Activity {
 					e.printStackTrace();
 				}
 			}
+			
+			DbAdapter db = new DbAdapter(MainActivity.this);
+			db.open();
+			db.insertCities(items_lat);
+			db.close();
 
-			ArrayAdapter<String> aa = new ArrayAdapter<String>(
-					MainActivity.this, android.R.layout.simple_spinner_item,
-					items_lat);
-			aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			spinnerView.setAdapter(aa);
-			spinnerView.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-				@Override
-				public void onItemSelected(AdapterView<?> arg0, View arg1,
-						int position, long arg3) {
-					// TODO Auto-generated method stub
-					User.grad = items_lat.get(position);
-					textGrad.setText(items_lat.get(position));
-				}
-
-				@Override
-				public void onNothingSelected(AdapterView<?> arg0) {
-					// TODO Auto-generated method stub
-
-				}
-			});
+			setupSpinner();
 			
 			MyLocation myLocation = new MyLocation();
 			boolean locationListenerCalled = myLocation.getLocation(MainActivity.this, locationResult);
@@ -231,10 +215,11 @@ public class MainActivity extends Activity {
 		}
 	}
 	
-	private void setUserId() {
+	private void setupUser() {
 		SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);    
 	    
 	    User.userId = sharedPreferences.getString("userId", "none");
+	    User.grad = sharedPreferences.getString("grad", "none");
 	    
 	    if (User.userId.equals("none")) {
 	    	//user id is not set
@@ -243,8 +228,55 @@ public class MainActivity extends Activity {
 	    	editor.putString("userId", User.userId);
 	    	editor.commit();
 	    }
+	    
+	    if (User.grad.equals("none")) {
+	    	new SendPostReqAsyncTask().execute("voda", "getcities");
+	    } else {
+	    	//populate items.lat
+	    	DbAdapter db = new DbAdapter(this);
+			db.open();
+			for (String grad : db.getCities()) {
+				items_lat.add(grad);
+			}
+			db.close();
+			
+			//setup spinner and select
+			setupSpinner();
+			for (int i=1; i < items_lat.size(); i++) {
+				if (User.grad.equals(items_lat.get(i)) ) {
+					textGrad.setText(items_lat.get(i));
+					User.grad = items_lat.get(i);
+					Log.d(TAG, "Grad je na poziciji " + i);
+					spinnerView.setSelection(i);
+				}
+			}
+			
+	    }
+	    
 	}
 	
+	private void setupSpinner() {
+		ArrayAdapter<String> aa = new ArrayAdapter<String>(
+				MainActivity.this, android.R.layout.simple_spinner_item,
+				items_lat);
+		aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerView.setAdapter(aa);
+		spinnerView.setOnItemSelectedListener(new OnItemSelectedListener() {
 
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
+				// TODO Auto-generated method stub
+				User.grad = items_lat.get(position);
+				textGrad.setText(items_lat.get(position));
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+	}
 	
 }
