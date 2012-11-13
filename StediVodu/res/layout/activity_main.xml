@@ -3,7 +3,10 @@
     android:layout_height="fill_parent"
     android:background="@drawable/main_bg"
     android:orientation="vertical"
-    android:padding="20dp" >
+    android:paddingTop="15dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="4dp" >
 
     <Spinner
             android:id="@+id/spinner"
@@ -32,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingTop="90dp"
-            android:text="Traženje..."
+            android:text="@string/trazim"
             android:textSize="26dp"
             android:textStyle="bold"
             android:textColor="@drawable/textselector" />
@@ -42,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Izaberi grad"
+            android:text="@string/izaberi_grad"
             android:textSize="16dp"
             android:textColor="@drawable/textselector" />
 
@@ -51,18 +54,43 @@
     </LinearLayout>
 
     
-
-    
-    
     <Button
-        android:id="@+id/buttonNadji"
-        android:layout_width="wrap_content"
+        
+        android:id="@+id/buttonIzracunaj"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/bottom_button"
+        android:background="@drawable/button"
         android:textColor="@android:color/white"
-        android:textSize="22dp"
+        android:textSize="18dp"
         android:textStyle="bold"
+        android:padding="10dp"
         android:text="@string/izracunaj" />
+    
+    <Button
+        android:layout_marginTop="4dp"
+        android:id="@+id/buttonKviz"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button"
+        android:textColor="@android:color/white"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:text="@string/kviz" />
+    
+    <Button
+        android:layout_marginTop="4dp"
+        android:id="@+id/buttonNadji"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button"
+        android:textColor="@android:color/white"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:text="@string/nadji" />
 
 </LinearLayout>

@@ -31,6 +31,8 @@
             android:name=".GraphicActivity" />
         <activity
             android:name=".ShareActivity" />
+        <activity
+            android:name=".QuizActivity" />
         
     </application>
 

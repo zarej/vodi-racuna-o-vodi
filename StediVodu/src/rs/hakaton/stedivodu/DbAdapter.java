@@ -17,12 +17,15 @@ public class DbAdapter {
 	private static final String DB_NAME = "vodiracunaovodi";
 	private static final String DB_TABLE_GRAD = "grad";
 	private static final String DB_TABLE_PITANJE = "pitanje";
-	private static final String DB_TABLE_ODGOVOR = "odgovor";
 	public static final String ROWID = "_id";
 	public static final String G_GRAD = "grad";
 	public static final String P_PITANJE = "pitanje";
-	public static final String O_ODGOVOR = "odgovor";
-	public static final String O_ID_PITANJE = "id_pitanje";
+	public static final String P_ODGOVOR1 = "odgovor1";
+	public static final String P_ODGOVOR2 = "odgovor2";
+	public static final String P_ODGOVOR3 = "odgovor3";
+	public static final String P_ODGOVOR4 = "odgovor4";
+	public static final String P_TACAN = "tacan";
+	public static final String P_OPIS = "opis";
 	private static final int DATABASE_VERSION = 1;
 
 	private static final boolean D = true;
@@ -52,8 +55,10 @@ public class DbAdapter {
 				Log.w(TAG, "Upgrading database from version " + oldVersion
 						+ " to " + newVersion
 						+ ", which will destroy all old data");
-//			db.execSQL(getSqlFromAssets("drop.sql", context));
 			execBatchSqlFromAssets("drop.sql", context, db);
+//			if (oldVersion == 1) {
+//				execBatchSqlFromAssets("alter2.sql", context, db);
+//			}
 			onCreate(db);
 		}
 	}
@@ -72,8 +77,8 @@ public class DbAdapter {
 		mDbHelper.close();
 	}
 
-	public void truncateGrad() {
-		mDb.execSQL("");
+	public void truncateCity() {
+		mDb.execSQL("delete from " + G_GRAD);
 	}
 
 	public long insertRow(String userid, String title, String description,
@@ -111,11 +116,41 @@ public class DbAdapter {
 	
 	public void insertCities(ArrayList<String> cities) {
 		
+		truncateCity();
+		
 		for (String city : cities) {
 			ContentValues initialValues = new ContentValues();
 			initialValues.put(G_GRAD, city);
 			mDb.insert(DB_TABLE_GRAD, null, initialValues);
 		}
+		
+	}
+	
+	public ArrayList<Question> getQuestions() {
+		
+		ArrayList<Question> questions = new ArrayList<Question>();
+		
+		Cursor c = mDb.query(DB_TABLE_PITANJE, new String[]
+				 {ROWID, P_PITANJE, P_ODGOVOR1, P_ODGOVOR2, P_ODGOVOR3, P_ODGOVOR3, P_ODGOVOR4, P_OPIS},
+				 null, null, null, null, null);
+		
+		while (c.moveToNext()) {
+
+			questions.add(new Question(
+					c.getString(c.getColumnIndex(P_PITANJE)),
+					c.getString(c.getColumnIndex(P_ODGOVOR1)),
+					c.getString(c.getColumnIndex(P_ODGOVOR2)),
+					c.getString(c.getColumnIndex(P_ODGOVOR3)),
+					c.getString(c.getColumnIndex(P_ODGOVOR4)),
+					c.getInt(c.getColumnIndex(P_TACAN)),
+					c.getString(c.getColumnIndex(P_OPIS))		
+					)
+			);			
+		}
+		
+		c.close();
+		
+		return questions;
 		
 	}
 	
@@ -130,6 +165,8 @@ public class DbAdapter {
 		while (c.moveToNext()) {
 			cities.add(c.getString(c.getColumnIndex(G_GRAD)));
 		}
+		
+		c.close();
 		
 		return cities;
 	}

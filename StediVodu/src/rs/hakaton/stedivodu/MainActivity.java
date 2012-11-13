@@ -40,7 +40,9 @@ public class MainActivity extends Activity {
 	ArrayList<String> items_lat = new ArrayList<String>();
 	ArrayList<String> items_cir = new ArrayList<String>();
 	LocationResult locationResult;
+	Button izracunajButton;
 	Button nadjiButton;
+	Button kvizButton;
 	LinearLayout fakeButton;
 	TextView textGrad;
 	ProgressDialog progressDialog;
@@ -51,12 +53,14 @@ public class MainActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		
-		items_lat.add("Nepoznata");
-		items_cir.add("Nepoznata");
+		
 		
 		spinnerView = (Spinner) findViewById(R.id.spinner);
 		fakeButton = (LinearLayout) findViewById(R.id.fakeBUtton);
 		textGrad = (TextView) findViewById(R.id.textGrad);
+		izracunajButton = (Button) findViewById(R.id.buttonIzracunaj);
+		nadjiButton = (Button) findViewById(R.id.buttonNadji);
+		kvizButton = (Button) findViewById(R.id.buttonKviz);
 		
 		setupUser();
 
@@ -113,18 +117,30 @@ public class MainActivity extends Activity {
 			}
 		};
 		
-		nadjiButton = (Button) findViewById(R.id.buttonNadji);
+		izracunajButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(MainActivity.this, InputActivity.class);
+				startActivity(i);
+			}
+		});
 		
 		nadjiButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE); 
-				SharedPreferences.Editor editor = sharedPreferences.edit();
-		    	editor.putString("grad", User.grad);
-		    	editor.commit();
-				Intent i = new Intent(MainActivity.this, InputActivity.class);
+				new SendPostReqAsyncTask().execute("voda", "getcities");
+			}
+		});
+		
+		kvizButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub				
+				Intent i = new Intent(MainActivity.this, QuizActivity.class);
 				startActivity(i);
 			}
 		});
@@ -138,6 +154,16 @@ public class MainActivity extends Activity {
 			}
 		});
 		
+	}
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE); 
+		SharedPreferences.Editor editor = sharedPreferences.edit();
+    	editor.putString("grad", User.grad);
+    	editor.commit();
 	}
 
 	@Override
@@ -184,6 +210,11 @@ public class MainActivity extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			items_lat.clear();
+			items_cir.clear();
+			items_lat.add("Nepoznata");
+			items_cir.add("Nepoznata");
 
 			for (int i = 0; i < citiesLatJsonArray.length(); i++) {
 				try {

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/main_bg"  >
+
+    <TextView
+        android:id="@+id/textViewQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutAFirstRow"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_above="@+id/linearLayoutASecondRow" >
+
+        <TextView
+            android:id="@+id/textViewQ1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Large Text"
+            android:gravity="left|center_vertical"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:background="@drawable/answerleft_sel" 
+            android:layout_weight="1"
+            android:paddingLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/textViewQ2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/answerright_sel"
+            android:text="Large Text"
+            android:gravity="right|center_vertical"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_weight="1"
+            android:paddingRight="10dp" />
+
+    </LinearLayout>
+        <LinearLayout
+        android:id="@+id/linearLayoutASecondRow"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" 
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/textViewQuestinNum" >
+
+        <TextView
+            android:id="@+id/textViewQ3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Large Text"
+            android:gravity="left|center_vertical"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:background="@drawable/answerleft_sel" 
+            android:layout_weight="1"
+            android:paddingLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/textViewQ4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/answerright_sel"
+            android:text="Large Text"
+            android:gravity="right|center_vertical"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_weight="1"
+            android:paddingRight="10dp"  />
+
+    </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/imageViewStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                
+                android:layout_marginLeft="32dp"
+                android:src="@drawable/fail"
+                android:background="@drawable/bottom_button"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/textViewQuestinNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:paddingBottom="10dp"
+                android:text="Pitanje 1 od 10"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>
