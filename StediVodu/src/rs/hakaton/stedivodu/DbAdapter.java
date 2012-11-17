@@ -27,7 +27,7 @@ public class DbAdapter {
 	public static final String P_TACAN = "tacan";
 	public static final String P_OPIS = "opis";
 	public static final String P_TIP = "tip";
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 3;
 
 	private static final boolean D = true;
 	private static final String TAG = "DbAdapter class";
