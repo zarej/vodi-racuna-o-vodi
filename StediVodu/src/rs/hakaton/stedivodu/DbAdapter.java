@@ -26,7 +26,8 @@ public class DbAdapter {
 	public static final String P_ODGOVOR4 = "odgovor4";
 	public static final String P_TACAN = "tacan";
 	public static final String P_OPIS = "opis";
-	private static final int DATABASE_VERSION = 1;
+	public static final String P_TIP = "tip";
+	private static final int DATABASE_VERSION = 2;
 
 	private static final boolean D = true;
 	private static final String TAG = "DbAdapter class";
@@ -131,7 +132,8 @@ public class DbAdapter {
 		ArrayList<Question> questions = new ArrayList<Question>();
 		
 		Cursor c = mDb.query(DB_TABLE_PITANJE, new String[]
-				 {ROWID, P_PITANJE, P_ODGOVOR1, P_ODGOVOR2, P_ODGOVOR3, P_ODGOVOR3, P_ODGOVOR4, P_OPIS},
+				 {ROWID, P_PITANJE, P_ODGOVOR1, P_ODGOVOR2, P_ODGOVOR3, 
+				P_ODGOVOR3, P_ODGOVOR4,P_TACAN, P_OPIS, P_TIP},
 				 null, null, null, null, null);
 		
 		while (c.moveToNext()) {
@@ -143,7 +145,8 @@ public class DbAdapter {
 					c.getString(c.getColumnIndex(P_ODGOVOR3)),
 					c.getString(c.getColumnIndex(P_ODGOVOR4)),
 					c.getInt(c.getColumnIndex(P_TACAN)),
-					c.getString(c.getColumnIndex(P_OPIS))		
+					c.getString(c.getColumnIndex(P_OPIS)),
+					c.getInt(c.getColumnIndex(P_TIP))
 					)
 			);			
 		}

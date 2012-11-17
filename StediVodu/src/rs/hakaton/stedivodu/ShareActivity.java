@@ -19,8 +19,8 @@ public class ShareActivity extends Activity {
 	
 	WebView webView;
 	
-	final String shareLink = "http://minimaldevelop.com/blog/vodi-racuna-o-vodi/";
-	final String picture = "http://minimaldevelop.com/blog/wp-content/uploads/2012/11/icon.jpg";
+	String shareLink = "http://minimaldevelop.com/blog/vodi-racuna-o-vodi/";
+	String picture = "http://minimaldevelop.com/blog/wp-content/uploads/2012/11/icon.jpg";
 	String name = "Vodi računa o vodi";
 	String caption = "Ovo je testna verzija aplikacije";
 	String description = "Molimo Vas da isprobate i napišete komentar ukoliko imate nekih primedbi ili znate kako da unapredimo aplikaciju.";
@@ -37,9 +37,17 @@ public class ShareActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_share);
 		
+		String socialCall = getIntent().getStringExtra("social");
+		
+		if (socialCall != null) {
+			String captionExtra = getIntent().getStringExtra("caption");
+			if (captionExtra != null) caption = captionExtra;
+		}
+		
 		caption = URLEncoder.encode(caption);
 		name = URLEncoder.encode(name);
 		description = URLEncoder.encode(description);
+		shareLink = URLEncoder.encode(shareLink);
 		
 		Button facebookButton = (Button) findViewById(R.id.buttonFacebook);
 		Button twitterButton = (Button) findViewById(R.id.buttonTwitter);
@@ -62,14 +70,11 @@ public class ShareActivity extends Activity {
 				"caption=" + caption + "&" +
 				"description=" + description + "&" +
 				"redirect_uri=http://minimaldevelop.com";
-		//https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fminimaldevelop.com%2Fblog%2Fvodi-racuna-o-vodi%2F&source=tweetbutton&text=Vodi%20ra%C4%8Duna%20o%20vodi%20minimal%20develop&url=http%3A%2F%2Fminimaldevelop.com%2Fblog%2Fvodi-racuna-o-vodi%2F
-//		twitterUrl = "http://twitter.com/home? " + 
-//				"status=" + caption + "%20" + shareLink;
-//		twitterUrl = "http://twitter.com/home?status=http://www.amazontravel.rs/?p=1289";
-		twitterUrl = "https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fminimaldevelop.com%2Fblog%2Fvodi-racuna-o-vodi%2F&source=tweetbutton&text=Vodi%20ra%C4%8Duna%20o%20vodi%20minimal%20develop&url=http%3A%2F%2Fminimaldevelop.com%2Fblog%2Fvodi-racuna-o-vodi%2F";
 		
-		String socialCall = getIntent().getStringExtra("social");
-		
+		twitterUrl = "https://twitter.com/intent/tweet?" +
+				"text=" + caption + "&" + 
+				"url=" + shareLink;
+
 		if (socialCall != null) {
 			if (socialCall.equals("facebook")) {			
 				webView.loadUrl(facebookUrl);
@@ -120,9 +125,7 @@ public class ShareActivity extends Activity {
 		       } else{
 		          redirect = false; 
 		       }
-
 		    }
-
     }
 	
 	OnClickListener fbButtonClick = new OnClickListener() {

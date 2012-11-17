@@ -17,19 +17,19 @@
             android:text="Facebook"
             android:textStyle="bold"
             android:padding="10dp"
-            android:layout_marginRight="20dp"
+            android:layout_margin="10dp"
             android:textColor="@android:color/white"
-            android:background="@drawable/bottom_button_s" />
+            android:background="@drawable/button" />
         <Button
             android:id="@+id/buttonTwitter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Twitter"
             android:padding="10dp"
-            android:layout_marginRight="20dp"
+            android:layout_margin="10dp"
             android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:background="@drawable/bottom_button_s" />
+            android:background="@drawable/button" />
         <Button
             android:id="@+id/buttonZavrsi"
             android:layout_width="match_parent"
@@ -37,8 +37,9 @@
             android:text="Završi"
             android:padding="10dp"
             android:textStyle="bold"
+            android:layout_margin="10dp"
             android:textColor="@android:color/white"
-            android:background="@drawable/bottom_button_s" />
+            android:background="@drawable/button" />
         
     </LinearLayout>
 

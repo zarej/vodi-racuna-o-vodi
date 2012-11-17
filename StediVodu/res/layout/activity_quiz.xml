@@ -2,15 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/main_bg"  >
+    android:background="@drawable/main_bg"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/textViewQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="20dp"
         android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#2e80b8" />
 
     <LinearLayout
         android:id="@+id/linearLayoutAFirstRow"
@@ -19,80 +22,83 @@
         android:layout_above="@+id/linearLayoutASecondRow" >
 
         <TextView
-            android:id="@+id/textViewQ1"
+            android:id="@+id/textViewA1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Large Text"
-            android:gravity="left|center_vertical"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:background="@drawable/answerleft_sel" 
             android:layout_weight="1"
-            android:paddingLeft="10dp"/>
+            android:background="@drawable/answerleft_sel"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="10dp"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff"
+            android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/textViewQ2"
+            android:id="@+id/textViewA2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@drawable/answerright_sel"
-            android:text="Large Text"
-            android:gravity="right|center_vertical"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_weight="1"
-            android:paddingRight="10dp" />
-
+            android:background="@drawable/answerright_sel"
+            android:gravity="right|center_vertical"
+            android:paddingRight="10dp"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff"
+            android:textSize="16dp" />
     </LinearLayout>
-        <LinearLayout
+
+    <LinearLayout
         android:id="@+id/linearLayoutASecondRow"
         android:layout_width="match_parent"
-        android:layout_height="40dp" 
-        android:layout_marginTop="10dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/textViewNumber"
         android:layout_marginBottom="10dp"
-        android:layout_above="@+id/textViewQuestinNum" >
+        android:layout_marginTop="10dp" >
 
         <TextView
-            android:id="@+id/textViewQ3"
+            android:id="@+id/textViewA3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Large Text"
+            android:layout_weight="1"
+            android:background="@drawable/answerleft_sel"
             android:gravity="left|center_vertical"
+            android:paddingLeft="10dp"
+            android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:background="@drawable/answerleft_sel" 
-            android:layout_weight="1"
-            android:paddingLeft="10dp"/>
+            android:textColor="#ffffff"
+            android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/textViewQ4"
+            android:id="@+id/textViewA4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@drawable/answerright_sel"
-            android:text="Large Text"
-            android:gravity="right|center_vertical"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_weight="1"
-            android:paddingRight="10dp"  />
-
+            android:background="@drawable/answerright_sel"
+            android:gravity="right|center_vertical"
+            android:paddingRight="10dp"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff"
+            android:textSize="16dp" />
     </LinearLayout>
 
-
-            <ImageView
-                android:id="@+id/imageViewStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                
-                android:layout_marginLeft="32dp"
-                android:src="@drawable/fail"
-                android:background="@drawable/bottom_button"
-                android:visibility="invisible" />
-
-            <TextView
-                android:id="@+id/textViewQuestinNum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:paddingBottom="10dp"
-                android:text="Pitanje 1 od 10"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:id="@+id/textViewNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="10dp"
+        android:text="Pitanje 1 od 10"
+        android:textColor="#2e80b8"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <ImageView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textViewQuestion"
+        android:src="@drawable/pitanje1"
+        android:visibility="gone"/>
 
 </RelativeLayout>

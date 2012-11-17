@@ -51,6 +51,7 @@ public class InputActivity extends Activity {
 					User.tipRacuna = (String) selectedRadioButton.getText();
 					User.racun = Float.parseFloat(editText.getText().toString());
 					startActivity(i);
+					finish();
 				} else {
 					Toast.makeText(InputActivity.this, "Popunite sva polja", Toast.LENGTH_SHORT).show();
 				}

@@ -33,6 +33,8 @@
             android:name=".ShareActivity" />
         <activity
             android:name=".QuizActivity" />
+        <activity
+            android:name=".QuizResultActivity" />
         
     </application>
 

@@ -103,8 +103,16 @@ public class GraphicActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent i = new Intent(GraphicActivity.this, ShareActivity.class);
-//				i.putExtra("social", "facebook");
+				i.putExtra("social", "facebook");
+				String caption = "Moj račun za vodu je manji od proseka za %d%";
+				if (prosekManji != 0f) {
+					caption = String.format("Moj račun za vodu je manji od proseka za %d%%. Proverite vaš.", (int)prosekProcenat);
+				} else if (prosekVeci != 0f) {
+					caption = String.format("Moj račun za vodu je veći od proseka za %d%%. Proverite vaš.", (int)prosekProcenat);
+				}
+				i.putExtra("caption", caption);
 				startActivity(i);
+				finish();
 			}
 		});
 	}

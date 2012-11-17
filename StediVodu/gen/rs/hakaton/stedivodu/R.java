@@ -42,32 +42,33 @@ public final class R {
         public static final int main_button_press=0x7f02001c;
         public static final int mainimage=0x7f02001d;
         public static final int marker=0x7f02001e;
-        public static final int success=0x7f02001f;
-        public static final int textselector=0x7f020020;
+        public static final int pitanje1=0x7f02001f;
+        public static final int success=0x7f020020;
+        public static final int textselector=0x7f020021;
     }
     public static final class id {
-        public static final int buttonFacebook=0x7f070034;
+        public static final int buttonFacebook=0x7f070036;
         public static final int buttonIzracunaj=0x7f070028;
         public static final int buttonKviz=0x7f070029;
         public static final int buttonNadji=0x7f07002a;
+        public static final int buttonShareQResult=0x7f07002d;
         public static final int buttonSubmit=0x7f070024;
-        public static final int buttonTwitter=0x7f070035;
-        public static final int buttonZavrsi=0x7f070036;
+        public static final int buttonTwitter=0x7f070037;
+        public static final int buttonZavrsi=0x7f070038;
         public static final int editText1=0x7f070023;
         public static final int fakeBUtton=0x7f070026;
         public static final int imageKuca=0x7f07001b;
         public static final int imageMarker=0x7f070004;
         public static final int imageView1=0x7f070001;
-        public static final int imageViewStatus=0x7f070033;
         public static final int imageVoda=0x7f07000a;
         public static final int imageZgrada=0x7f07001e;
-        public static final int linearLayoutAFirstRow=0x7f07002c;
-        public static final int linearLayoutASecondRow=0x7f07002d;
+        public static final int linearLayoutAFirstRow=0x7f07002f;
+        public static final int linearLayoutASecondRow=0x7f070030;
         public static final int linearLayoutRaising=0x7f070005;
         public static final int linearLayoutRaisingSub=0x7f07000b;
         public static final int linearLayoutVasaPotrosnja=0x7f070006;
         public static final int linearLayoutМаркеr=0x7f070002;
-        public static final int menu_settings=0x7f070038;
+        public static final int menu_settings=0x7f07003a;
         public static final int radioSex=0x7f07001f;
         public static final int radioVoda=0x7f070020;
         public static final int radioVodaiKom=0x7f070021;
@@ -78,13 +79,15 @@ public final class R {
         public static final int textView1=0x7f07001c;
         public static final int textView11=0x7f07001d;
         public static final int textView2=0x7f070022;
+        public static final int textViewA1=0x7f070031;
+        public static final int textViewA2=0x7f070032;
+        public static final int textViewA3=0x7f070034;
+        public static final int textViewA4=0x7f070035;
+        public static final int textViewNumber=0x7f070033;
         public static final int textViewProsek=0x7f070003;
-        public static final int textViewQ1=0x7f07002e;
-        public static final int textViewQ2=0x7f07002f;
-        public static final int textViewQ3=0x7f070031;
-        public static final int textViewQ4=0x7f070032;
-        public static final int textViewQuestinNum=0x7f070030;
-        public static final int textViewQuestion=0x7f07002b;
+        public static final int textViewQuestion=0x7f07002e;
+        public static final int textViewRPercent=0x7f07002c;
+        public static final int textViewResult=0x7f07002b;
         public static final int textViewScore1=0x7f07000c;
         public static final int textViewScore11=0x7f07000d;
         public static final int textViewScore2=0x7f07000e;
@@ -102,14 +105,15 @@ public final class R {
         public static final int textViewYourAverage=0x7f070009;
         public static final int textViewYourPercentage=0x7f070008;
         public static final int textZivis=0x7f07001a;
-        public static final int webView1=0x7f070037;
+        public static final int webView1=0x7f070039;
     }
     public static final class layout {
         public static final int activity_graphic=0x7f030000;
         public static final int activity_input=0x7f030001;
         public static final int activity_main=0x7f030002;
-        public static final int activity_quiz=0x7f030003;
-        public static final int activity_share=0x7f030004;
+        public static final int activity_qresult=0x7f030003;
+        public static final int activity_quiz=0x7f030004;
+        public static final int activity_share=0x7f030005;
     }
     public static final class menu {
         public static final int activity_main=0x7f060000;

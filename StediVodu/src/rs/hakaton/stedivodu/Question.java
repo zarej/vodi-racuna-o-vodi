@@ -8,9 +8,10 @@ public class Question {
 	String answer4;
 	int correctAnswer;
 	String opis;
+	int tip;
 	
 	public Question(String question, String answer1, String answer2,
-			String answer3, String answer4, int correctAnswer, String opis) {
+			String answer3, String answer4, int correctAnswer, String opis, int tip) {
 		super();
 		this.question = question;
 		this.answer1 = answer1;
@@ -19,5 +20,6 @@ public class Question {
 		this.answer4 = answer4;
 		this.correctAnswer = correctAnswer;
 		this.opis = opis;
+		this.tip = tip;
 	}
 }
