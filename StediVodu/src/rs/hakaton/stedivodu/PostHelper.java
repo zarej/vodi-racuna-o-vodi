@@ -89,9 +89,19 @@ public class PostHelper {
 			nameValuePairList.add(kucaStanBasicNameValuePAir);			
 			nameValuePairList.add(userIdBasicNameValuePAir);
 		} else if (params[1].equals("getspending")) {
+			
 			BasicNameValuePair gradBasicNameValuePAir = new BasicNameValuePair(
 					"grad", User.grad == null? "Nepoznani grad" : User.grad );	
 			nameValuePairList.add(gradBasicNameValuePAir);
+			
+		} else if (params[1].equals("getstatistic")) {
+			
+			BasicNameValuePair gradBasicNameValuePAir = new BasicNameValuePair(
+					"grad", User.grad == null? "Nepoznani grad" : User.grad );
+			BasicNameValuePair userIdBasicNameValuePAir = new BasicNameValuePair(
+					"id_korisnik", User.userId);
+			nameValuePairList.add(gradBasicNameValuePAir);
+			nameValuePairList.add(userIdBasicNameValuePAir);
 		}
 
 		try {

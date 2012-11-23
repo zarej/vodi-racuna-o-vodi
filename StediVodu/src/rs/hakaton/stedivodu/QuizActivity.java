@@ -141,7 +141,7 @@ public class QuizActivity extends Activity {
 				AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
 
 				// 2. Chain together various setter methods to set the dialog characteristics
-				String title = isCorrectAnswer? "Bravo, odgovor je tačan :)" : "Odgovor nije tačan :(";
+				String title = isCorrectAnswer? "Bravo, odgovor je tačan!" : "Odgovor nije tačan.";
 				builder.setMessage(questions.get(currentQuestion).opis)
 				       .setTitle(title);
 				

@@ -10,7 +10,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import rs.hakaton.stedivodu.MyLocation.LocationResult;
+import rs.hakaton.stedivodu.remainder.OnAlarmReceiver;
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -43,9 +45,12 @@ public class MainActivity extends Activity {
 	Button izracunajButton;
 	Button nadjiButton;
 	Button kvizButton;
+	Button statistikaButton;
 	LinearLayout fakeButton;
 	TextView textGrad;
 	ProgressDialog progressDialog;
+	LinearLayout llMainWrapper;
+	TextView tvIzaberiGrad;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -53,7 +58,8 @@ public class MainActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		
-		
+		NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+		nm.cancel(OnAlarmReceiver.uniqueID);
 		
 		spinnerView = (Spinner) findViewById(R.id.spinner);
 		fakeButton = (LinearLayout) findViewById(R.id.fakeBUtton);
@@ -61,6 +67,9 @@ public class MainActivity extends Activity {
 		izracunajButton = (Button) findViewById(R.id.buttonIzracunaj);
 		nadjiButton = (Button) findViewById(R.id.buttonNadji);
 		kvizButton = (Button) findViewById(R.id.buttonKviz);
+		statistikaButton = (Button) findViewById(R.id.buttonStatistika);
+		llMainWrapper = (LinearLayout) findViewById(R.id.llMainWrapper);
+		tvIzaberiGrad = (TextView) findViewById(R.id.textIzaberiGrad);
 		
 		setupUser();
 
@@ -121,6 +130,10 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				if (!validateCity()) {
+					//korisnik je izabrao grad: Nepoznato					
+					return;
+				}
 				Intent i = new Intent(MainActivity.this, InputActivity.class);
 				startActivity(i);
 			}
@@ -153,6 +166,31 @@ public class MainActivity extends Activity {
 				spinnerView.performClick();
 			}
 		});
+		
+		statistikaButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (!validateCity()) {
+					//korisnik je izabrao grad: Nepoznato					
+					return;
+				}
+				Intent i = new Intent(MainActivity.this, ChartActivity.class);
+				startActivity(i);
+			}
+		});
+		
+	}
+	
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		// TODO Auto-generated method stub
+		super.onWindowFocusChanged(hasFocus);
+		
+		if (llMainWrapper.getHeight() < 321) {
+			tvIzaberiGrad.setVisibility(View.GONE);
+		}
 		
 	}
 	
@@ -308,6 +346,16 @@ public class MainActivity extends Activity {
 
 			}
 		});
+	}
+	
+	private boolean validateCity() {
+		if (User.grad.equals(items_lat.get(0))) {
+			//korisnik je izabrao grad: Nepoznato
+			Toast.makeText(MainActivity.this, "Izaberite grad ili idite na 'Nađi moju lokaciju'", Toast.LENGTH_SHORT).show();
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 }

@@ -46,7 +46,6 @@ public class DbAdapter {
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
-//			db.execSQL(getSqlFromAssets("create.sql", context));
 			execBatchSqlFromAssets("create.sql", context, db);
 		}
 
@@ -81,39 +80,6 @@ public class DbAdapter {
 	public void truncateCity() {
 		mDb.execSQL("delete from " + G_GRAD);
 	}
-
-	public long insertRow(String userid, String title, String description,
-			String latitude, String longitude) {
-		ContentValues initialValues = new ContentValues();
-		// initialValues.put(KEY_USERID, userid);
-		// initialValues.put(KEY_TITLE, title);
-		// initialValues.put(KEY_DESCRIPTION, description);
-		// initialValues.put(KEY_LATITUDE, latitude);
-		// initialValues.put(KEY_LONGITUDE, longitude);
-
-		return mDb.insert(DB_TABLE_GRAD, null, initialValues);
-	}
-
-	// public Cursor getAllMarkers() {
-	// return mDb.query(DB_TABLE_GRAD, new String[]
-	// {KEY_ROWID, KEY_LATITUDE, KEY_LONGITUDE, KEY_TITLE, KEY_DESCRIPTION,
-	// KEY_SNIPPET, KEY_IMAGEURL, KEY_IMAGEASSET},
-	// null, null, null, null, null);
-	// }
-
-	// public Cursor fetchRow(long rowId) throws SQLException {
-	// Cursor mCursor =
-	// mDb.query(true, DB_TABLE_GRAD, new String[] {KEY_ROWID, KEY_LATITUDE,
-	// KEY_LONGITUDE,
-	// KEY_TITLE, KEY_DESCRIPTION, KEY_SNIPPET, KEY_ADDRESS, KEY_IMAGEURL,
-	// KEY_IMAGEASSET, KEY_PAGEASSET}, KEY_ROWID + "=" + rowId, null,
-	// null, null, null, null);
-	// if (mCursor != null) {
-	// mCursor.moveToFirst();
-	// }
-	// return mCursor;
-	// }
-
 	
 	public void insertCities(ArrayList<String> cities) {
 		

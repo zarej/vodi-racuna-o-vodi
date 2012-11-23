@@ -3,8 +3,12 @@ package rs.hakaton.stedivodu;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import rs.hakaton.stedivodu.remainder.RemainderActivity;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -39,6 +43,7 @@ public class GraphicActivity extends Activity {
 	LinearLayout llVasaPotrosnja;
 	ImageView imageVoda;
 	TextView tvYourAverage;
+	TextView tvProsek;
 	
 	private TweenManager tweenManager;
 	private boolean isAnimationRunning = true;
@@ -88,6 +93,7 @@ public class GraphicActivity extends Activity {
 		llRaisingSub = (LinearLayout) findViewById(R.id.linearLayoutRaisingSub);
 		llVasaPotrosnja = (LinearLayout) findViewById(R.id.linearLayoutVasaPotrosnja);
 		tvYourAverage = (TextView) findViewById(R.id.textViewYourAverage);
+		tvProsek = (TextView) findViewById(R.id.textViewProsek);
 		
 		llRaisingSub.setVisibility(View.GONE);
 		tvYourAverage.setVisibility(View.INVISIBLE);
@@ -115,6 +121,10 @@ public class GraphicActivity extends Activity {
 				finish();
 			}
 		});
+		
+		
+		//Remainder
+		RemainderActivity.setMonthlyAlarm(this);
 	}
 
 
@@ -155,7 +165,14 @@ public class GraphicActivity extends Activity {
 			try {
 				JSONObject json = new JSONObject(result);
 				if (json.getString("status").equals("success")) {
-					JSONObject potrosnjaJson = json.getJSONObject("potrosnja");
+					JSONObject potrosnjaJson = null;
+					try {
+						potrosnjaJson = json.getJSONObject("potrosnja");
+					} catch (JSONException ex) {
+						reactOnCityNotFoundInDb();
+						return;
+					}
+					
 					double p39 = potrosnjaJson.getDouble("p_39");
 					double p36 = potrosnjaJson.getDouble("p_36");
 					double p18 = potrosnjaJson.getDouble("p_18");
@@ -168,7 +185,7 @@ public class GraphicActivity extends Activity {
 					
 					Log.d(TAG, "Prosek u din = " + prosek);
 					
-					TextView tvProsek = (TextView) findViewById(R.id.textViewProsek);
+					
 					tvProsek.setText(getResources().getString(R.string.prosek, String.format("%.2f", prosek)));
 					
 					TextView tvVasRacun = (TextView) findViewById(R.id.textViewVasRacun);
@@ -198,12 +215,6 @@ public class GraphicActivity extends Activity {
 				ex.printStackTrace();
 				Toast.makeText(GraphicActivity.this, "Greska prilikom parsiranja json-a. Vidi php", Toast.LENGTH_SHORT).show();
 			}
-			
-//			else if (result.equalsIgnoreCase("ok")) {
-//				Toast.makeText(GraphicActivity.this, "Uspesno unet rekord", Toast.LENGTH_SHORT).show();
-//			} else {
-//				Toast.makeText(GraphicActivity.this, "Nepoznata greska. Ovo ne bi trebalo nikada da se pojavi :). Vidi php", Toast.LENGTH_SHORT).show();
-//			}
 		}
 	}
 	
@@ -417,6 +428,30 @@ public class GraphicActivity extends Activity {
 		
 		TextView tvScore6 = (TextView) findViewById(R.id.textViewScore66);
 		tvScore6.setText(getResources().getString(R.string.trosi, String.format("%.2f", score6)));
+	}
+	
+	private void reactOnCityNotFoundInDb() {
+		llVasaPotrosnja.setVisibility(View.INVISIBLE);
+		tvProsek.setVisibility(View.INVISIBLE);
+		
+		// 1. Instantiate an AlertDialog.Builder with its constructor
+		AlertDialog.Builder builder = new AlertDialog.Builder(GraphicActivity.this);
+
+		// 2. Chain together various setter methods to set the dialog characteristics
+		builder.setMessage("U toku je prikuljanje informacija za vaš grad...")
+		       .setTitle("Trenutno nemamo statistiku za " + User.grad);
+		
+		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+	           public void onClick(DialogInterface dialog, int id) {
+	               // User clicked OK button
+	        	   finish();
+	           }
+	       });
+
+		// 3. Get the AlertDialog from create()
+		AlertDialog dialog = builder.create();
+		
+		dialog.show();
 	}
 	
 }

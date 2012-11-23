@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="rs.hakaton.stedivodu"
     android:versionCode="1"
     android:versionName="1.0" >
@@ -6,16 +7,18 @@
     <uses-sdk
         android:minSdkVersion="7"
         android:targetSdkVersion="15" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
-    
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:icon="@drawable/icon"
         android:label="@string/title_activity_main"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme" android:debuggable="false">
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
@@ -25,17 +28,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".InputActivity" />
+        <activity android:name=".GraphicActivity" />
+        <activity android:name=".ShareActivity" />
+        <activity android:name=".QuizActivity" />
+        <activity android:name=".QuizResultActivity" />
         <activity
-            android:name=".InputActivity" />
-        <activity
-            android:name=".GraphicActivity" />
-        <activity
-            android:name=".ShareActivity" />
-        <activity
-            android:name=".QuizActivity" />
-        <activity
-            android:name=".QuizResultActivity" />
-        
+            android:name=".remainder.RemainderActivity" >            
+            <intent-filter>
+                <action android:name="rs.hakaton.stedivodu.REMAINDER_SETUP" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="org.achartengine.GraphicalActivity" />
+        <activity android:name=".ChartActivity" />
+        <receiver android:name=".remainder.OnAlarmReceiver" >
+    </receiver>
+    <receiver android:name=".remainder.OnBootReceiver" >
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" >
+            </action>
+        </intent-filter>
+    </receiver>
     </application>
+
+    
 
 </manifest>

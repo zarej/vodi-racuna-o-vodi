@@ -7,13 +7,15 @@
 
     <TextView
         android:id="@+id/textViewQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:padding="20dp"
         android:text="Large Text"
-        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#2e80b8" />
+        android:textColor="#2e80b8"
+        android:textStyle="bold"
+        android:layout_above="@+id/linearLayoutAFirstRow"
+        android:gravity="center_vertical"  />
 
     <LinearLayout
         android:id="@+id/linearLayoutAFirstRow"
